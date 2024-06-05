@@ -16,13 +16,16 @@ const InfoClien = ({ cliente }) => {
                 if (producto) {
                     return {
                         ...producto,
-                        cuotasTotales: cuota.cantidadCuotas,
-                        cuotasPendientes: cuota.cantidadCuotas - (cuota.pagadas || 0) // Suponiendo que hay un campo "pagadas" que contiene las cuotas pagadas
+                        fechaPago: cuota.fechaPago,
+                        montoMes: (cuota.montoTotal / cuota.cuotasTotales).toFixed(2),
+                        cuotasTotales: cuota.cuotasTotales,
+                        cuotasPendientes: cuota.cuotasTotales - (cuota.cuotasPagadas || 0),
+                        cuotasPagadas: cuota.cuotasPagadas || 0,
                     };
                 }
                 return null;
             })
-            .filter(producto => producto); // Remove undefined values
+            .filter(producto => producto); // Eliminar valores indefinidos
         setProductos(productosCliente);
     }, [cliente]);
 
@@ -63,7 +66,7 @@ const InfoClien = ({ cliente }) => {
                 </div>
                 <div>
                     <label className="block font-semibold">Celular</label>
-                    <p className="border p-2 rounded">{cliente.celular}</p>
+                    <p className="border p-2 rounded">{cliente.telefono}</p>
                 </div>
                 <div>
                     <label className="block font-semibold">Dirección</label>
@@ -73,13 +76,15 @@ const InfoClien = ({ cliente }) => {
                     <table className="min-w-full bg-white">
                         <thead>
                             <tr>
-                                <th className="py-2">Producto</th>
-                                <th className="py-2">Cuotas Totales</th>
+                                <th className="py-2">Nombre del Producto</th>
+                                <th className="py-2">Fecha de Pago</th>
+                                <th className="py-2">Monto a Pagar (Mes)</th>
                                 <th className="py-2">Cuotas Pendientes</th>
+                                <th className="py-2">Cuotas Pagadas</th>
                                 <th className="py-2">Acciones</th>
                             </tr>
                             <tr>
-                                <th colSpan="4">
+                                <th colSpan="6">
                                     <input
                                         type="text"
                                         value={searchTerm}
@@ -94,8 +99,10 @@ const InfoClien = ({ cliente }) => {
                             {filteredProductos.map((producto, index) => (
                                 <tr key={index} className="text-center">
                                     <td className="py-2 border">{producto.Nombre}</td>
-                                    <td className="py-2 border">{producto.cuotasTotales}</td>
+                                    <td className="py-2 border">{producto.fechaPago}</td>
+                                    <td className="py-2 border">{producto.montoMes}</td>
                                     <td className="py-2 border">{producto.cuotasPendientes}</td>
+                                    <td className="py-2 border">{producto.cuotasPagadas}</td>
                                     <td className="py-2 border">
                                         <button
                                             onClick={() => handlePagoClick(producto)}
@@ -115,3 +122,4 @@ const InfoClien = ({ cliente }) => {
 };
 
 export default InfoClien;
+

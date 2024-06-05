@@ -11,11 +11,11 @@ const FormularioLogin = () => {
         Telefono: '',
         Direccion: '',
         Genero: '',
-        Avatar: ''  // Estado para el avatar seleccionado
+        Avatar: ''  
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [isRegister, setIsRegister] = useState(false); // Estado para alternar entre login y registro
+    const [isRegister, setIsRegister] = useState(false); 
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -54,14 +54,6 @@ const FormularioLogin = () => {
             setLoading(false);
         }
     };
-
-    // Lista de avatares disponibles
-    const avatars = [
-
-        'avatar 2.png',
-        'avatar 3.png',
-        // Añade más avatares según sea necesario
-    ];
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-white">

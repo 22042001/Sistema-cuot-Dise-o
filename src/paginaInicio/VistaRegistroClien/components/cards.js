@@ -15,7 +15,7 @@ const Card = ({ id, title, carnet, nombre, onPay, onEdit, onDelete }) => (
             >
                 <FontAwesomeIcon icon={faDollarSign} />
             </button>
-            <Link to={`/info-cliente/${id}`} className="text-black px-4 py-2 rounded hover:bg-lime-300">
+            <Link to={`/informacion-cliente/${id}`} className="text-black px-4 py-2 rounded hover:bg-lime-300">
                 <FontAwesomeIcon icon={faPlus} />
             </Link>
             <button

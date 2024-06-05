@@ -12,7 +12,7 @@ const FormuClien = () => {
         Telefono: '',
         Direccion: '',
         Genero: '',
-        CarnetIdentidad: '' // Nuevo campo
+        CarnetIdentidad: '' 
     });
 
     const navigate = useNavigate();
@@ -28,11 +28,11 @@ const FormuClien = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const storedClientes = JSON.parse(localStorage.getItem('clientes')) || [];
-        formData.id = String(storedClientes.length + 1); // Asignar un ID único
+        formData.id = String(storedClientes.length + 1); 
         storedClientes.push(formData);
         localStorage.setItem('clientes', JSON.stringify(storedClientes));
         console.log(formData);
-        navigate('/lista-clientes'); // Navegar a la lista de clientes después del registro
+        navigate('/lista-clientes'); 
     };
 
     return (

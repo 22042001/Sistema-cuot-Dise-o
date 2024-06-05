@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DateRange } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // Main style file
-import 'react-date-range/dist/theme/default.css'; // Theme CSS file
+import 'react-date-range/dist/styles.css'; 
+import 'react-date-range/dist/theme/default.css'; 
 import Select from 'react-select';
 
 const FormuCuotas = () => {
@@ -13,7 +13,7 @@ const FormuCuotas = () => {
     const [productos, setProductos] = useState([]);
     const [formData, setFormData] = useState({
         clienteId: '',
-        productos: [], // Cambiado a array para múltiples productos
+        productos: [], 
         montoTotal: '',
         cantidadCuotas: '',
         fechasPago: {

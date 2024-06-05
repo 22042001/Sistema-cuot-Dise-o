@@ -17,4 +17,3 @@ const CardCuota = ({ cuota, cliente, onMoreInfo }) => (
 
 export default CardCuota;
 
-

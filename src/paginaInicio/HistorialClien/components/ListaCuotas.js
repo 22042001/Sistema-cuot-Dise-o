@@ -5,6 +5,7 @@ import CardCuota from './CardCuota';
 const ListaCuotas = () => {
     const [clientes, setClientes] = useState([]);
     const [cuotas, setCuotas] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,9 +16,10 @@ const ListaCuotas = () => {
             { id: '3', nombre: 'Carlos', apellidos: 'Martinez', email: 'carlos@example.com', telefono: '456789012' },
         ];
         const predefinidosCuotas = [
-            { id: '1', clienteId: '1', montoTotal: 1200, producto: 'Celular', cuotasTotales: 12, cuotasPagadas: 6 },
-            { id: '2', clienteId: '2', montoTotal: 800, producto: 'Laptop', cuotasTotales: 8, cuotasPagadas: 3 },
-            { id: '3', clienteId: '3', montoTotal: 1000, producto: 'Tablet', cuotasTotales: 10, cuotasPagadas: 5 },
+            { id: '1', clienteId: '1', producto: 'Celular', montoTotal: 1200, cuotasTotales: 12, cuotasPagadas: 6 },
+            { id: '2', clienteId: '1', producto: 'Laptop', montoTotal: 2500, cuotasTotales: 10, cuotasPagadas: 4 },
+            { id: '3', clienteId: '1', producto: 'Lentes', montoTotal: 800, cuotasTotales: 8, cuotasPagadas: 3 },
+            { id: '4', clienteId: '1', producto: 'Reloj', montoTotal: 1000, cuotasTotales: 10, cuotasPagadas: 5 },
         ];
         setClientes(predefinidosClientes);
         setCuotas(predefinidosCuotas);
@@ -27,11 +29,26 @@ const ListaCuotas = () => {
         navigate(`/detalle-cuota/${cuotaId}`);
     };
 
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredCuotas = cuotas.filter(cuota =>
+        cuota.producto.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className="p-8 bg-gray-100 min-h-screen flex flex-col">
             <h1 className="text-4xl font-bold text-gray-700 mb-8">Historial de Cuotas</h1>
+            <input
+                type="text"
+                placeholder="Buscar producto..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="mb-4 p-2 border rounded w-full"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {cuotas.map((cuota) => {
+                {filteredCuotas.map((cuota) => {
                     const cliente = clientes.find(c => c.id === cuota.clienteId);
                     return (
                         <CardCuota 
