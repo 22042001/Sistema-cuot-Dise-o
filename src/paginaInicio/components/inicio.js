@@ -17,7 +17,7 @@ const Inicio = ({ usuario }) => {
                 Bienvenido
             </h1>
             <p className="mt-4 break-words justify-center">
-                Se plantea un inicio llamativo 
+                hola
             </p>
         </div>
     </div>
