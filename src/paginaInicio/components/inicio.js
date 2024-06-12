@@ -1,36 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faBox, faDollarSign, faClipboardList } from '@fortawesome/free-solid-svg-icons';
-import { Bar } from 'react-chartjs-2';
-import { Chart, registerables } from 'chart.js';
 
-Chart.register(...registerables);
 
-const generateRandomData = () => {
-    const products = ['Producto 1', 'Producto 2', 'Producto 3', 'Producto 4', 'Producto 5'];
-    const cuotasPendientes = products.map(() => Math.floor(Math.random() * 20));
 
-    return {
-        labels: products,
-        datasets: [
-            {
-                label: 'Cuotas Pendientes',
-                data: cuotasPendientes,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
-            },
-        ],
-    };
-};
 
 const Inicio = () => {
     const [clientesRegistrados, setClientesRegistrados] = useState(0);
     const [productosDisponibles, setProductosDisponibles] = useState(0);
     const [cuotasRegistradas, setCuotasRegistradas] = useState(0);
     const [ingresosTotales, setIngresosTotales] = useState(0);
-    const [cuotasData, setCuotasData] = useState(generateRandomData());
-
+    
     useEffect(() => {
         // Obtener datos de localStorage
         const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
@@ -75,10 +55,7 @@ const Inicio = () => {
                     <p className="text-4xl">{ingresosTotales.toLocaleString()} Bs</p>
                 </div>
             </div>
-            <div className="w-full max-w-screen-lg mx-auto mt-8 bg-white border border-gray-200 shadow-md rounded-lg p-6">
-                <h2 className="text-2xl font-bold mb-4">Gráfico de Cuotas Pendientes</h2>
-                <Bar data={cuotasData} />
-            </div>
+           
         </div>
     );
 };

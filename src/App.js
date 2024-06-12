@@ -13,6 +13,7 @@ import Sidebar from './paginaInicio/components/sidebar';
 import ListaCuotas from './paginaInicio/HistorialClien/components/ListaCuotas';
 import DetalleCuota from './paginaInicio/HistorialClien/components/DetalleCuota';
 import DetallePago from './paginaInicio/HistorialClien/components/DetallePago';
+import Estadisticas from './paginaInicio/Estadisticas';
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -49,6 +50,7 @@ function App() {
             <Route path="/historial-pagos" element={<ListaCuotas />} />
             <Route path="/detalle-cuota/:cuotaId" element={<DetalleCuota />} />
             <Route path="/historial-de-pagos/detalle-pago" element={<DetallePago />} />
+            <Route path="/estadisticas" element={<Estadisticas />} />
           </Routes>
         </div>
       </div>
